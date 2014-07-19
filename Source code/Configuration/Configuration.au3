@@ -25,7 +25,7 @@ Func ReadFromOptionsFile($key)
    Return IniRead($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, $key, "")
 EndFunc
 
-; Write infromation to options file (but first, you need to make sure it exists)
+; Write infromation to options file
 ; $key - key to search
 ; $value - info to write
 Func WriteToOptionsFile($key, $value)
