@@ -2,7 +2,7 @@
 ; Use it from GUI to set/get values
 ; Use it on bot start to initialize all values
 
-#include <../Source code/System functions/SystemFunctions.au3>
+#include "../system/SystemFunctions.au3"
 #include <File.au3>
 
 Local Const $OPTIONS_FILE_NAME = "user_options.ini"
