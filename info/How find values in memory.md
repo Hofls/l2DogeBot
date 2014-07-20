@@ -26,28 +26,28 @@ So final result will be:
  - Offset 5: **240**
 
 #### Max MP
-Max HP offset 4 + 300 (hex)
+Max HP offset 5 + 300 (hex)
 
 238+300 = **538**
 
 #### Current MP
-Max MP offset 4 + 8 (hex)
+Max MP offset 5 + 8 (hex)
 
 538+8= **540**
 
 #### Max CP
-Max MP offset 4 + 600 (hex)
+Max MP offset 5 + 600 (hex)
 
 538+600 = **b38**
 
 #### Current CP
-Max CP offset 4 + 8 (hex)
+Max CP offset 5 + 8 (hex)
 
 b38+8= **b40**
 
 #### Current EXP
 This is return 4 digit number. F.e. 3062. This means hero have 30.62%. 100% = 10000.
 
-Max HP offset 4 + 608 (hex)
+Max HP offset 5 + 608 (hex)
 
 238 + 608 = **840**
