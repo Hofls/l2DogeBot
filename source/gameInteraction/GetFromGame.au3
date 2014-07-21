@@ -1,16 +1,10 @@
-; Get data from game
+; Get information from game, lowest level of abstraction
+; (memory/dllhooks/pixels)
+; #RequireAdmin is necessary
 #include "../libraries/NomadMemory.au3"
-#include "../config/GameProperties.au3"
+#include "../storage/GameProperties.au3"
 
 #RequireAdmin
-
-; example, todo: delete
-func getHeatlh()
-   Local $offsets[] = [0x000330B0, 0x42c, 0x740, 0x528, 0x524, 0x670]
-   $dllName = "NWindow.dll"
-   $health =  GetMemoryValue($dllName, $offsets)
-   return $health
-EndFunc
 
 ; Function returns value from address with offset.
 ; Parameters:
@@ -28,3 +22,11 @@ func GetMemoryValue($dllName, $offsets)
 
    return $memoryValue
 EndFunc
+
+; example, todo: delete
+;func getHeatlh()
+;   Local $offsets[] = [0x000330B0, 0x42c, 0x740, 0x528, 0x524, 0x670]
+;   $dllName = "NWindow.dll"
+;   $health =  GetMemoryValue($dllName, $offsets)
+;   return $health
+;EndFunc

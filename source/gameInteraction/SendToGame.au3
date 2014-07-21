@@ -1,4 +1,5 @@
-; Send info to the game (button pressing/mouse clicks/dll calls)
+; Send info to the game, lowest level of abstraction
+; (button pressing/mouse clicks/dll calls)
 
 #include "../config/GameProperties.au3"
 
