@@ -1,12 +1,11 @@
 ; Send info to the game, lowest level of abstraction
 ; (button pressing/mouse clicks/dll calls)
 
-#include "../config/GameProperties.au3"
+#include "../storage/GameProperties.au3"
 
 ; Press the button (for special buttons look at 'Send' documentation)
 ; $buttonName - name of the button, jeez.
 Func pressButton($buttonName)
-   ; todo: create script with getHwnd function, which returns chosen game window
    ControlSend(getHandleWindow(), "", "", $buttonName)
 EndFunc
 

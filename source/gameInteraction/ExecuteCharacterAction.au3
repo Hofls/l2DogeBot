@@ -2,6 +2,9 @@
 
 #include "SendToGame.au3"
 
+func nextTarget()
+EndFunc
+
 func autoAttack()
 EndFunc
 
@@ -13,5 +16,7 @@ EndFunc
 
 func useManaPotion()
 EndFunc
+
+
 
 ; ...
