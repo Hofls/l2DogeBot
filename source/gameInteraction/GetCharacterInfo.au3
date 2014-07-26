@@ -3,6 +3,8 @@
 #include-once
 #include "GetFromGame.au3"
 
+ConsoleWrite(getCharacterHeatlh())
+
 ; min 0 max 100
 func getTargetHealth()
    $fullHealthBarColor = 0xE74984
@@ -22,7 +24,7 @@ EndFunc
 ; min 0 max 100
 func getCharacterMana()
    $fullManaBarColor = 0x083CA5
-   $fullManaBorder = getFirstColorCoordX(370, 85, 25, 95, $fullHealthBarColor)
-   $percentMana = (($fullHealthBorder - 25) / (370 - 25)) * 100
+   $fullManaBorder = getFirstColorCoordX(370, 85, 25, 95, $fullManaBarColor)
+   $percentMana = (($fullManaBorder - 25) / (370 - 25)) * 100
    return Int($percentMana)
 EndFunc

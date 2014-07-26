@@ -6,14 +6,15 @@
 #include "../storage/GameProperties.au3"
 #include "../tactics/Tactics.au3"
 
-#RequireAdmin
-
 Local $buttonStart, $buttonGameWindowSelect, $buttonConfig
 
-CreateMainForm()
+; Start application-user interaction
+Func MainFormShow()
+   CreateMainForm()
+   MainFormInteraction()
+EndFunc
 
-MainFormInteraction()
-
+; Contain all main form graphic elements
 ; Private function, use inside script only
 Func CreateMainForm()
    GUICreate("l2DogeBot", 400, 400)
