@@ -1,6 +1,7 @@
 ; Game properties storage
 ; Use it to initialize properties before work start
 ; Use it to get information about game process/window/memory
+#include-once
 
 Local $gameProcessId
 Local $gameHandleWindow

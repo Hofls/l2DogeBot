@@ -1,6 +1,6 @@
 ; Inner information storage, for testing/debugging purposes
 ; Recreate new log every time on work start
-
+#include-once
 #include <FileConstants.au3>
 #include <File.au3>
 

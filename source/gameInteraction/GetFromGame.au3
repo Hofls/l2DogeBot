@@ -2,6 +2,7 @@
 ; (memory/dllhooks/pixels)
 ; ScreenCapture/Graphic and Sound management
 ; #RequireAdmin
+#include-once
 #include "../libraries/NomadMemory.au3"
 #include "../storage/GameProperties.au3"
 #include "../system/SystemFunctions.au3"

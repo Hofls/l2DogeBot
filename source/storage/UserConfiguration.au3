@@ -1,7 +1,7 @@
 ; Check/Create/Read/Write user defined options (.ini)
 ; Use it from GUI to set/get values
 ; Use it on bot start to initialize all values
-
+#include-once
 #include "../system/SystemFunctions.au3"
 #include <File.au3>
 

@@ -1,6 +1,6 @@
+#include-once
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
-
 
 ; Public function, use otside script only
 Func GetGameWindowHandleByUser()

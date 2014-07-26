@@ -1,7 +1,11 @@
 ; Graphical user interface, main script, by click on "start" button initiates bot work
+#include-once
 #include <GuiConstantsEx.au3>
-#include "../storage/GameProperties.au3"
 #include "WindowSelect.au3"
+#include "../storage/GameProperties.au3"
+#include "../tactics/Tactics.au3"
+
+#RequireAdmin
 
 Local $buttonStart, $buttonGameWindowSelect
 
@@ -25,10 +29,12 @@ Func MainFormInteraction()
 		 Case $GUI_EVENT_CLOSE
 			Exit
 		 Case $buttonStart
-			MsgBox("", "Start", "Go go go") ; bot work start (entry point)
+			   testAction() ; bot work start (entry point)
 		 Case $buttonGameWindowSelect
 			setGameHandleWindow(GetGameWindowHandleByUser())
 			setGameProcessId(WinGetProcess(getGameHandleWindow()))
 	  EndSwitch
    WEnd
 EndFunc
+
+

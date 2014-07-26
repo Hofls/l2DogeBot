@@ -1,6 +1,6 @@
 ; Get character info from game, middle level of abstraction
 ; All information character have access to (Character params, monsters visible by character, monsters params etc)
-
+#include-once
 #include "GetFromGame.au3"
 
 ; min 0 max 100
