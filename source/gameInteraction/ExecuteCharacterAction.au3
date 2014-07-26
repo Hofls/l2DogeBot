@@ -1,32 +1,33 @@
 ; Get data from game, middle level of abstraction
 #include-once
 #include "SendToGame.au3"
-
-
+#include "../storage/UserConfiguration.au3"
+#include "../storage/UserConfigurationKeysList.au3"
 
 func nextTarget()
-   local $VK_F3 = 0x72
-   pressButton($VK_F3)
+   $buttonName = ReadFromOptionsFile($CONFIG_KEY_NEXT_TARGET)
+   pressButton($buttonKey)
 EndFunc
 
 func autoAttack()
-   local $VK_F1 = 0x70
-   pressButton($VK_F1)
+   $buttonName = ReadFromOptionsFile($CONFIG_KEY_AUTO_ATTACK)
+   $buttonKey = getButtonKeyByName($buttonName)
+   pressButton($buttonKey)
 EndFunc
 
 func dropPickUp()
-   local $VK_F2 = 0x71
-   pressButton($VK_F2)
+   $buttonName = ReadFromOptionsFile($CONFIG_KEY_PICKUP_DROP)
+   $buttonKey = getButtonKeyByName($buttonName)
+   pressButton($buttonKey)
 EndFunc
 
 func useHealthPotion()
-   local $VK_F4 = 0x73
-   pressButton($VK_F4)
+   $buttonName = ReadFromOptionsFile($CONFIG_KEY_HEALTH_POTION)
+   $buttonKey = getButtonKeyByName($buttonName)
+   pressButton($buttonKey)
 EndFunc
 
 func useManaPotion()
 EndFunc
-
-
 
 ; ...

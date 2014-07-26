@@ -3,6 +3,7 @@
 #include <WindowsConstants.au3>
 #include "../storage/UserConfiguration.au3"
 #include "../storage/UserConfigurationKeysList.au3"
+#include "../storage/AcceptableButtons.au3"
 
 ;ShowConfigurationForm()
 
@@ -21,24 +22,23 @@ EndFunc
 
 ; Private function, use inside script only
 Func CreateConfigurationForm()
-   $ButtonNames = "F1|F2|F3|F4|F5|F6|F7|F8|F9|F10|F11|F12"
    $windowSelectForm = GUICreate("Configuration", 180, 200, -1, -1, BitOr($WS_CAPTION, $WS_POPUP, $WS_SYSMENU))
 
    GUICtrlCreateLabel("Attack:", 5, 10, 70, 20)
    $BoxAttack = GUICtrlCreateCombo("", 130, 10, 40)
-   GUICtrlSetData($BoxAttack, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_AUTO_ATTACK))
+   GUICtrlSetData($BoxAttack, $BUTTONS_LIST, ReadFromOptionsFile($CONFIG_KEY_AUTO_ATTACK))
 
    GUICtrlCreateLabel("Drop pickup:", 5, 40, 70, 20)
    $BoxDrop = GUICtrlCreateCombo("", 130, 40, 40)
-   GUICtrlSetData($BoxDrop, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_PICKUP_DROP))
+   GUICtrlSetData($BoxDrop, $BUTTONS_LIST, ReadFromOptionsFile($CONFIG_KEY_PICKUP_DROP))
 
    GUICtrlCreateLabel("Next target:", 5, 70, 70, 20)
    $BoxNextTarget = GUICtrlCreateCombo("", 130, 70, 40)
-   GUICtrlSetData($BoxNextTarget, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_NEXT_TARGET))
+   GUICtrlSetData($BoxNextTarget, $BUTTONS_LIST, ReadFromOptionsFile($CONFIG_KEY_NEXT_TARGET))
 
    GUICtrlCreateLabel("Health potion:", 5, 100, 70, 20)
    $BoxHealthPotion = GUICtrlCreateCombo("", 130, 100, 40)
-   GUICtrlSetData($BoxHealthPotion, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_HEALTH_POTION))
+   GUICtrlSetData($BoxHealthPotion, $BUTTONS_LIST, ReadFromOptionsFile($CONFIG_KEY_HEALTH_POTION))
 
    $buttonSave = GUICtrlCreateButton("Save", 40, 150, 100, 30)
 
