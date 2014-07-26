@@ -2,12 +2,13 @@
 #include-once
 #include <GuiConstantsEx.au3>
 #include "WindowSelect.au3"
+#include "ConfigurationForm.au3"
 #include "../storage/GameProperties.au3"
 #include "../tactics/Tactics.au3"
 
 #RequireAdmin
 
-Local $buttonStart, $buttonGameWindowSelect
+Local $buttonStart, $buttonGameWindowSelect, $buttonConfig
 
 CreateMainForm()
 
@@ -18,6 +19,7 @@ Func CreateMainForm()
    GUICreate("l2DogeBot", 400, 400)
    $buttonStart = GUICtrlCreateButton("Start", 150, 330, 100, 30)
    $buttonGameWindowSelect = GUICtrlCreateButton("Window selection", 50, 330, 100, 30)
+   $buttonConfig = GUICtrlCreateButton("Configuration", 250, 330, 100, 30)
    GUISetState(@SW_SHOW)
 EndFunc
 
@@ -33,6 +35,8 @@ Func MainFormInteraction()
 		 Case $buttonGameWindowSelect
 			setGameHandleWindow(GetGameWindowHandleByUser())
 			setGameProcessId(WinGetProcess(getGameHandleWindow()))
+		 Case $buttonConfig
+			ShowConfigurationForm()
 	  EndSwitch
    WEnd
 EndFunc
