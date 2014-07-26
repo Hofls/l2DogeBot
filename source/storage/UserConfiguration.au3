@@ -3,6 +3,7 @@
 ; Use it on bot start to initialize all values
 #include-once
 #include <File.au3>
+#include "UserConfigurationKeysList.au3"
 
 Local Const $OPTIONS_FILE_NAME = "user_options.ini"
 Local Const $CURRENT_DIRECTORY_PATH = @ScriptDir & "\"
@@ -46,10 +47,8 @@ EndFunc
 Func createOptionsFile()
    _FileCreate ($OPTIONS_FULL_PATH)
    IniWriteSection($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, "")
-	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, "HealthPotion", "")
-	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, "NextTarget", "")
-	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, "PickUpDrop", "")
-	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, "AutoAttack", "")
+	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, $CONFIG_KEY_AUTO_ATTACK, "")
+	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, $CONFIG_KEY_PICKUP_DROP, "")
+	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, $CONFIG_KEY_NEXT_TARGET, "")
+	  IniWrite($OPTIONS_FULL_PATH, $OPTIONS_BUTTONS_SECTION, $CONFIG_KEY_HEALTH_POTION, "")
 EndFunc
-
-

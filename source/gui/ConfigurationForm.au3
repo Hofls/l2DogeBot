@@ -2,6 +2,7 @@
 #include <GUIConstantsEx.au3>
 #include <WindowsConstants.au3>
 #include "../storage/UserConfiguration.au3"
+#include "../storage/UserConfigurationKeysList.au3"
 
 ;ShowConfigurationForm()
 
@@ -25,19 +26,19 @@ Func CreateConfigurationForm()
 
    GUICtrlCreateLabel("Attack:", 5, 10, 70, 20)
    $BoxAttack = GUICtrlCreateCombo("", 130, 10, 40)
-   GUICtrlSetData($BoxAttack, $ButtonNames)
+   GUICtrlSetData($BoxAttack, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_AUTO_ATTACK))
 
    GUICtrlCreateLabel("Drop pickup:", 5, 40, 70, 20)
    $BoxDrop = GUICtrlCreateCombo("", 130, 40, 40)
-   GUICtrlSetData($BoxDrop, $ButtonNames)
+   GUICtrlSetData($BoxDrop, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_PICKUP_DROP))
 
    GUICtrlCreateLabel("Next target:", 5, 70, 70, 20)
    $BoxNextTarget = GUICtrlCreateCombo("", 130, 70, 40)
-   GUICtrlSetData($BoxNextTarget, $ButtonNames)
+   GUICtrlSetData($BoxNextTarget, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_NEXT_TARGET))
 
    GUICtrlCreateLabel("Health potion:", 5, 100, 70, 20)
    $BoxHealthPotion = GUICtrlCreateCombo("", 130, 100, 40)
-   GUICtrlSetData($BoxHealthPotion, $ButtonNames)
+   GUICtrlSetData($BoxHealthPotion, $ButtonNames, ReadFromOptionsFile($CONFIG_KEY_HEALTH_POTION))
 
    $buttonSave = GUICtrlCreateButton("Save", 40, 150, 100, 30)
 
@@ -62,15 +63,15 @@ EndFunc
 Func SaveConfiguration()
 
    $attackButton = GUICtrlRead($BoxAttack)
-   WriteToOptionsFile("AutoAttack", $attackButton)
+   WriteToOptionsFile($CONFIG_KEY_AUTO_ATTACK, $attackButton)
 
    $dropButton = GUICtrlRead($BoxDrop)
-   WriteToOptionsFile("PickUpDrop", $dropButton)
+   WriteToOptionsFile($CONFIG_KEY_PICKUP_DROP, $dropButton)
 
    $nextTargetButton = GUICtrlRead($BoxNextTarget)
-   WriteToOptionsFile("NextTarget", $nextTargetButton)
+   WriteToOptionsFile($CONFIG_KEY_NEXT_TARGET, $nextTargetButton)
 
    $healthPotionButton = GUICtrlRead($BoxHealthPotion)
-   WriteToOptionsFile("HealthPotion", $healthPotionButton)
+   WriteToOptionsFile($CONFIG_KEY_HEALTH_POTION, $healthPotionButton)
 
 EndFunc
