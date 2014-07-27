@@ -5,8 +5,24 @@
 #include "../storage/UserConfigurationKeysList.au3"
 #include "GetFromGame.au3"
 
+Func healthyTargetIsChosen()
+   if (getTargetHeatlh()>95) Then
+	  Return True
+   Else
+	  Return False
+   EndIf
+EndFunc
+
+Func targetIsDead()
+   if (getTargetHeatlh()<5) Then
+	  Return True
+   Else
+	  Return False
+   EndIf
+EndFunc
+
 ; min 0 max 100
-; Public function, use otside script only
+; Public function, use outside script only
 func getCharacterHeatlh()
    $fullHealthBarColor = 0xB50018
    $healthPercent = getBarFullness($CONFIG_KEY_HEALTH_BAR_START_X, $CONFIG_KEY_HEALTH_BAR_START_Y, _
@@ -16,7 +32,7 @@ func getCharacterHeatlh()
 EndFunc
 
 ; min 0 max 100
-; Public function, use otside script only
+; Public function, use outside script only
 func getCharacterMana()
    $fullManaBarColor = 0x083CA5
    $manaPercent = getBarFullness($CONFIG_KEY_MANA_BAR_START_X, $CONFIG_KEY_MANA_BAR_START_Y, _
@@ -26,7 +42,7 @@ func getCharacterMana()
 EndFunc
 
 ; min 0 max 100
-; Public function, use otside script only
+; Public function, use outside script only
 func getTargetHeatlh()
    $targetFullHealthBarColor = 0xE74984
    $targetHeatlhPercent = getBarFullness($CONFIG_KEY_TARGET_HEALTH_BAR_START_X, $CONFIG_KEY_TARGET_HEALTH_BAR_START_Y, _

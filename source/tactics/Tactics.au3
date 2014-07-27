@@ -4,34 +4,27 @@
 #include "../gameInteraction/ExecuteCharacterAction.au3"
 
 func testAction()
-   autoAttack()
-EndFunc
 
-func testTactic()
-   while True
-
-	  ; battle
-	  nextTarget()
-	  if (isTargetChosen()) Then
-		 while (not isTargetDead()) Then
+   While True
+	  randomPredifinedTarget()
+	  if (healthyTargetIsChosen()) Then
+		 While (not targetIsDead())
+			nextTarget() ; in case if on the way appears other monster
 			autoAttack()
 		 WEnd
 		 dropPickUp()
 	  EndIf
 
 	  ; restore
-	  if (getHeatlhPercent() < 80) Then
+	  if (getCharacterHeatlh() < 80) Then
 		 useHealthPotion()
 	  EndIf
-	  if (getManaPercent() < 70) Then
-		 useManaPotion()
-	  EndIf
 
-	  ; rebuff
-	  if (isTimeToRebuff()) Then
-		 useBuffs()
-	  EndIf
+	  ;rebuff
+	  ;if (isTimeToRebuff()) Then
+	  ;  useBuffs()
+	  ;EndIf
 
    WEnd
 
-endfunc
+EndFunc
