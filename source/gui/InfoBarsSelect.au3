@@ -10,8 +10,6 @@ Local $buttonCheckSelection
 Local $infoLabel
 Local $InfoBarSelectionStage
 
-ShowInfoBarSelectForm()
-
 ; Public function, use otside script only
 Func ShowInfoBarSelectForm()
    $InfoBarSelectionStage = 0

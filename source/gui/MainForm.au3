@@ -1,12 +1,20 @@
-; Graphical user interface, main script, by click on "start" button initiates bot work
+; Graphical user interface, contains link to other program parts
+; by click on "start" button initiates bot work
 #include-once
+; GUI
 #include <GuiConstantsEx.au3>
 #include "WindowSelect.au3"
 #include "ConfigurationForm.au3"
+#include "InfoBarsSelect.au3"
+; Storage
 #include "../storage/GameProperties.au3"
+; Tactics
 #include "../tactics/Tactics.au3"
 
-Local $buttonStart, $buttonGameWindowSelect, $buttonConfig
+Local $buttonStart
+Local $buttonGameWindowSelect
+Local $buttonConfig
+Local $buttonInfoBarsSelect
 
 ; Start application-user interaction
 Func MainFormShow()
@@ -17,10 +25,11 @@ EndFunc
 ; Contain all main form graphic elements
 ; Private function, use inside script only
 Func CreateMainForm()
-   GUICreate("l2DogeBot", 400, 400)
-   $buttonStart = GUICtrlCreateButton("Start", 150, 330, 100, 30)
-   $buttonGameWindowSelect = GUICtrlCreateButton("Window selection", 50, 330, 100, 30)
-   $buttonConfig = GUICtrlCreateButton("Configuration", 250, 330, 100, 30)
+   GUICreate("l2DogeBot", 300, 150)
+   $buttonConfig = GUICtrlCreateButton("Configuration", 50, 30, 100, 30)
+   $buttonInfoBarsSelect = GUICtrlCreateButton("Info bars selection", 150, 30, 100, 30)
+   $buttonStart = GUICtrlCreateButton("Start", 150, 70, 100, 30)
+   $buttonGameWindowSelect = GUICtrlCreateButton("Window selection", 50, 70, 100, 30)
    GUISetState(@SW_SHOW)
 EndFunc
 
@@ -38,6 +47,8 @@ Func MainFormInteraction()
 			setGameProcessId(WinGetProcess(getGameHandleWindow()))
 		 Case $buttonConfig
 			ShowConfigurationForm()
+		 Case $buttonInfoBarsSelect
+			ShowInfoBarSelectForm()
 	  EndSwitch
    WEnd
 EndFunc
