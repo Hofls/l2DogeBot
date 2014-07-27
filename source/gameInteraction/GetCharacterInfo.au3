@@ -5,55 +5,50 @@
 #include "../storage/UserConfigurationKeysList.au3"
 #include "GetFromGame.au3"
 
-ConsoleWrite(getTargetHeatlh())
-
 ; min 0 max 100
+; Public function, use otside script only
 func getCharacterHeatlh()
    $fullHealthBarColor = 0xB50018
-   $healthRightBorderX = ReadFromOptionsFile($CONFIG_KEY_HEALTH_BAR_END_X)
-   $healthRightBorderY = ReadFromOptionsFile($CONFIG_KEY_HEALTH_BAR_END_Y)
-   $healthLeftBorderX  = ReadFromOptionsFile($CONFIG_KEY_HEALTH_BAR_START_X)
-   $healthLeftBorderY  = ReadFromOptionsFile($CONFIG_KEY_HEALTH_BAR_START_Y)
-
-   $fullHealthBorderX = getFirstColorCoordX($healthRightBorderX, $healthRightBorderY, _
-										   $healthLeftBorderX,  $healthLeftBorderY, _
-										   $fullHealthBarColor)
-
-   $percentHealth = (($fullHealthBorderX - $healthLeftBorderX) / ($healthRightBorderX - $healthLeftBorderX)) * 100
-
-   return Int($percentHealth)
+   $healthPercent = getBarFullness($CONFIG_KEY_HEALTH_BAR_START_X, $CONFIG_KEY_HEALTH_BAR_START_Y, _
+								   $CONFIG_KEY_HEALTH_BAR_END_X, $CONFIG_KEY_HEALTH_BAR_END_Y, _
+							       $fullHealthBarColor)
+   return Int($healthPercent)
 EndFunc
 
 ; min 0 max 100
+; Public function, use otside script only
 func getCharacterMana()
    $fullManaBarColor = 0x083CA5
-   $manaRightBorderX = ReadFromOptionsFile($CONFIG_KEY_MANA_BAR_END_X)
-   $manaRightBorderY = ReadFromOptionsFile($CONFIG_KEY_MANA_BAR_END_Y)
-   $manaLeftBorderX  = ReadFromOptionsFile($CONFIG_KEY_MANA_BAR_START_X)
-   $manaLeftBorderY  = ReadFromOptionsFile($CONFIG_KEY_MANA_BAR_START_Y)
-
-   $fullManaBorderX = getFirstColorCoordX($manaRightBorderX, $manaRightBorderY, _
-										  $manaLeftBorderX,  $manaLeftBorderY, _
-										  $fullManaBarColor)
-
-   $percentMana = (($fullManaBorderX - $manaLeftBorderX) / ($manaRightBorderX - $manaLeftBorderX)) * 100
-
-   return Int($percentMana)
+   $manaPercent = getBarFullness($CONFIG_KEY_MANA_BAR_START_X, $CONFIG_KEY_MANA_BAR_START_Y, _
+								 $CONFIG_KEY_MANA_BAR_END_X, $CONFIG_KEY_MANA_BAR_END_Y, _
+								 $fullManaBarColor)
+   return Int($manaPercent)
 EndFunc
 
 ; min 0 max 100
+; Public function, use otside script only
 func getTargetHeatlh()
    $targetFullHealthBarColor = 0xE74984
-   $healthRightBorderX = ReadFromOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_X)
-   $healthRightBorderY = ReadFromOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_Y)
-   $healthLeftBorderX  = ReadFromOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_START_X)
-   $healthLeftBorderY  = ReadFromOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_START_Y)
+   $targetHeatlhPercent = getBarFullness($CONFIG_KEY_TARGET_HEALTH_BAR_START_X, $CONFIG_KEY_TARGET_HEALTH_BAR_START_Y, _
+										 $CONFIG_KEY_TARGET_HEALTH_BAR_END_X, $CONFIG_KEY_TARGET_HEALTH_BAR_END_Y, _
+										 $targetFullHealthBarColor)
+   return Int($targetHeatlhPercent)
+EndFunc
 
-   $fullHealthBorderX = getFirstColorCoordX($healthRightBorderX, $healthRightBorderY, _
-										   $healthLeftBorderX,  $healthLeftBorderY, _
-										   $targetFullHealthBarColor)
+; min 0 max 100
+; Private function, use inside script only
+func getBarFullness($keyBarStartX, $keyBarStartY, $keyBarEndX, $keyBarEndY, $colorToSearch)
 
-   $percentHealth = (($fullHealthBorderX - $healthLeftBorderX) / ($healthRightBorderX - $healthLeftBorderX)) * 100
+   $barRightBorderX = ReadFromOptionsFile($keyBarEndX)
+   $barRightBorderY = ReadFromOptionsFile($keyBarEndY)
+   $barLeftBorderX  = ReadFromOptionsFile($keyBarStartX)
+   $barLeftBorderY  = ReadFromOptionsFile($keyBarStartY)
 
-   return Int($percentHealth)
+   $barFullBorderX = getFirstColorCoordX($barRightBorderX, $barRightBorderY, _
+										 $barLeftBorderX,  $barLeftBorderY, _
+										 $colorToSearch)
+
+   $percentBarFullness = (($barFullBorderX - $barLeftBorderX) / ($barRightBorderX - $barLeftBorderX)) * 100
+
+   return Int($percentBarFullness)
 EndFunc
