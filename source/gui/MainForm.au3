@@ -11,6 +11,8 @@
 ; Tactics
 #include "../tactics/Tactics.au3"
 
+HotKeySet("+{ESC}", "On_Exit")
+
 Local $buttonStart
 Local $buttonGameWindowSelect
 Local $buttonConfig
@@ -26,6 +28,7 @@ EndFunc
 ; Private function, use inside script only
 Func CreateMainForm()
    GUICreate("l2DogeBot", 300, 150)
+   GUICtrlCreateLabel("Press SHIFT+ESC to exit", 10, 10, 150, 20)
    $buttonConfig = GUICtrlCreateButton("Configuration", 50, 30, 100, 30)
    $buttonInfoBarsSelect = GUICtrlCreateButton("Info bars selection", 150, 30, 100, 30)
    $buttonStart = GUICtrlCreateButton("Start", 150, 70, 100, 30)
@@ -53,4 +56,6 @@ Func MainFormInteraction()
    WEnd
 EndFunc
 
-
+Func On_Exit()
+    Exit
+EndFunc

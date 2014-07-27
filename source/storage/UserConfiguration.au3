@@ -12,7 +12,7 @@ Local Const $OPTIONS_MAIN_SECTION = "Main"
 
 ; Read value from options file by key
 ; $key - key to seacrh value
-; Public function, use otside script only
+; Public function, use outside script only
 Func ReadFromOptionsFile($key)
    if (not isOptionsFileExists()) Then
 	  createOptionsFile()
@@ -23,7 +23,7 @@ EndFunc
 ; Write infromation to options file
 ; $key - key to search
 ; $value - info to write
-; Public function, use otside script only
+; Public function, use outside script only
 Func WriteToOptionsFile($key, $value)
    if (not isOptionsFileExists()) Then
 	  createOptionsFile()
