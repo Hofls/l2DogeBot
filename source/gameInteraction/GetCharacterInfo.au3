@@ -3,8 +3,6 @@
 #include-once
 #include "GetFromGame.au3"
 
-ConsoleWrite(getCharacterHeatlh())
-
 ; min 0 max 100
 func getTargetHealth()
    $fullHealthBarColor = 0xE74984
