@@ -62,6 +62,7 @@ Func InfoBarSelect()
 
    ; algorithm: save previous stage cursor position => write new stage message
    $mouseCoordinates = MouseGetPos()
+
    Switch $InfoBarSelectionStage
 	  Case 1
 		 $nextStageSelectElement = $heroHealthLeftBorder
@@ -89,6 +90,7 @@ Func InfoBarSelect()
 		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_X, $mouseCoordinates[$mouseXindex])
 		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_Y, $mouseCoordinates[$mouseYindex])
    EndSwitch
+
    $selectionIsOver = ($InfoBarSelectionStage >= $stagesTotalCount)
    if (not $selectionIsOver) Then
 	  GUICtrlSetData($infoLabel, $actionsSequence & " " & $positionMark & " " & $nextStageSelectElement)

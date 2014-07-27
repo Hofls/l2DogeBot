@@ -11,28 +11,16 @@
 ; Search from right to left in rectangle
 ; Use it to get hp/mp bar fullness
 Func getFirstColorCoordX($right, $top, $left, $bottom, $color)
-   ; Right-to-Left - right < left
-   Local $coords = PixelSearch($right, $top, $left, $bottom, $color)
+   ; extend search area
+   $top = $top - 4
+   $bottom = $bottom + 4
+   Local $coords = PixelSearch($right, $top, $left, $bottom, $color) ; Right-to-Left - PixelSearch(right < left)
    If Not @error Then
 	  return $coords[0]
    Else
 	  return 0.
    EndIf
 
-EndFunc
-
-;util --------------------------------------------------------------------
-
-Func GetMouseInfoTwice()
-   GetMouseInfo(2500)
-   GetMouseInfo(1500)
-EndFunc
-
-Func GetMouseInfo($waitMilliseconds)
-   Sleep($waitMilliseconds)
-   Local $aPos = MouseGetPos()
-   ConsoleWriteLn($aPos[0] & ":" & $aPos[1] & " | " & _
-				  Hex(PixelGetColor($aPos[0], $aPos[1]), 6))
 EndFunc
 
 ;memory -------------------------------------------------------------------
