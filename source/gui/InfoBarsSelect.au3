@@ -37,7 +37,6 @@ Func InfoBarSelectFormInteraction()
 			ExitLoop
 		 Case $buttonCheckSelection
 			InfoBarSelect()
-			;ExitLoop
 	  EndSwitch
    WEnd
 EndFunc
@@ -45,7 +44,7 @@ EndFunc
 ; Private function, use inside script only
 Func InfoBarSelect()
    ; Info for user
-   Local Const $actionsSequence = "Move cursor to the position, then press 'Enter'"
+   Local Const $actionsSequence = "Move cursor to the position, then press 'Space'"
    Local Const $positionMark = "Position: "
    Local Const $heroHealthLeftBorder = "hero health left border."
    Local Const $heroHealthRightBorder = "hero health right border."
@@ -53,26 +52,50 @@ Func InfoBarSelect()
    Local Const $heroManaRightBorder = "hero mana right border."
    Local Const $targetHealthLeftBorder = "target health left border."
    Local Const $targetHealthRightBorder = "target health right border."
-   Local $currentStageSelectedElement = "Not defined yet"
+   Local Const $doneMessage = "Selection is over."
+   Local $nextStageSelectElement = ""
    ; Mouse array
    Local Const $mouseXindex = 0
    Local Const $mouseYindex = 1
    Local $mouseCoordinates
 
+   Local Const $stagesTotalCount = 7
    $InfoBarSelectionStage = $InfoBarSelectionStage + 1
 
-   ; algorithm: read previous stage cursor position => write new stage message
+   ; algorithm: save previous stage cursor position => write new stage message
+   $mouseCoordinates = MouseGetPos()
    Switch $InfoBarSelectionStage
 	  Case 1
-		 $currentStageSelectedElement = $heroHealthLeftBorder
+		 $nextStageSelectElement = $heroHealthLeftBorder
 	  Case 2
-		 $mouseCoordinates = MouseGetPos()
 		 WriteToOptionsFile($CONFIG_KEY_HEALTH_BAR_START_X, $mouseCoordinates[$mouseXindex])
 		 WriteToOptionsFile($CONFIG_KEY_HEALTH_BAR_START_Y, $mouseCoordinates[$mouseYindex])
-		 $currentStageSelectedElement = $heroHealthRightBorder
+		 $nextStageSelectElement = $heroHealthRightBorder
 	  Case 3
-		 $currentStageSelectedElement = $heroManaLeftBorder
+		 WriteToOptionsFile($CONFIG_KEY_HEALTH_BAR_END_X, $mouseCoordinates[$mouseXindex])
+		 WriteToOptionsFile($CONFIG_KEY_HEALTH_BAR_END_Y, $mouseCoordinates[$mouseYindex])
+		 $nextStageSelectElement = $heroManaLeftBorder
+	  Case 4
+		 WriteToOptionsFile($CONFIG_KEY_MANA_BAR_START_X, $mouseCoordinates[$mouseXindex])
+		 WriteToOptionsFile($CONFIG_KEY_MANA_BAR_START_Y, $mouseCoordinates[$mouseYindex])
+		 $nextStageSelectElement = $heroManaRightBorder
+	  Case 5
+		 WriteToOptionsFile($CONFIG_KEY_MANA_BAR_END_X, $mouseCoordinates[$mouseXindex])
+		 WriteToOptionsFile($CONFIG_KEY_MANA_BAR_END_Y, $mouseCoordinates[$mouseYindex])
+		 $nextStageSelectElement = $targetHealthLeftBorder
+	  Case 6
+		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_START_X, $mouseCoordinates[$mouseXindex])
+		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_START_Y, $mouseCoordinates[$mouseYindex])
+		 $nextStageSelectElement = $targetHealthRightBorder
+   	  Case $stagesTotalCount
+		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_X, $mouseCoordinates[$mouseXindex])
+		 WriteToOptionsFile($CONFIG_KEY_TARGET_HEALTH_BAR_END_Y, $mouseCoordinates[$mouseYindex])
    EndSwitch
-   GUICtrlSetData($infoLabel, $actionsSequence & " " & $positionMark & " " & $currentStageSelectedElement)
+   $selectionIsOver = ($InfoBarSelectionStage >= $stagesTotalCount)
+   if (not $selectionIsOver) Then
+	  GUICtrlSetData($infoLabel, $actionsSequence & " " & $positionMark & " " & $nextStageSelectElement)
+   Else
+	  GUICtrlSetData($infoLabel, $doneMessage)
+   EndIf
 
 EndFunc
